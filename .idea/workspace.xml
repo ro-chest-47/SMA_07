@@ -7,8 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41f9b879-b903-42f7-9681-6a17609b2969" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/TravelerDigitalWatchJDKError_jar.zip" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/TravelerDigitalWatchJDKError_jar.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Stopwatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Stopwatch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -126,8 +127,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Stopwatch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+            <state relative-caret-position="133">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
               <folding>
                 <element signature="e#341#565#0" expanded="true" />
                 <element signature="e#564#565#0" expanded="true" />
@@ -381,7 +382,7 @@
       <workItem from="1559963690154" duration="3360000" />
       <workItem from="1559979280122" duration="1907000" />
       <workItem from="1559983435588" duration="381000" />
-      <workItem from="1559984756455" duration="6569000" />
+      <workItem from="1559984756455" duration="7197000" />
     </task>
     <servers />
   </component>
@@ -418,7 +419,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163058000" />
+    <option name="totallyTimeSpent" value="163686000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -752,8 +753,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Stopwatch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        <state relative-caret-position="133">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
           <folding>
             <element signature="e#341#565#0" expanded="true" />
             <element signature="e#564#565#0" expanded="true" />

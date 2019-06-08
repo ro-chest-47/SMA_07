@@ -9,7 +9,7 @@ public class Stopwatch{
 
     public Stopwatch(){
         startStopwatch=false;
-        stopwatchTime=719500;
+        stopwatchTime=0;
         timer.scheduleAtFixedRate(task, 0, 10);
 
 
