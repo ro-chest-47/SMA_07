@@ -11,8 +11,8 @@ public class NumberGeneratorTest {
     @Test
     public void setRange() {
         NumberGenerator ng = new NumberGenerator();
-        int i=0;
-        while(i<11) {
+        int i=1;
+        while(i<10) {
             ng.setRange();
             i++;
         }
@@ -24,7 +24,7 @@ public class NumberGeneratorTest {
     public void resetRange() {
         NumberGenerator ng = new NumberGenerator();
         ng.resetRange();
-        assertEquals(ng.getInputNumber(), 0);
+        assertEquals(ng.getInputNumber(), 1);
     }
 
     @Test
@@ -38,7 +38,7 @@ public class NumberGeneratorTest {
     @Test
     public void generateRandomNumber() {
         NumberGenerator ng = new NumberGenerator();
-        int i=0;
+        int i=1;
         while(i<11) {
             ng.setRange();
             i++;

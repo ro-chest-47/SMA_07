@@ -1,22 +1,16 @@
 public class WatchSystem {
 
    // private int currentMode;
-    SetTime setTime;
-    AlarmManager alarmManager;
-    GlobalTime globalTime;
-    NumberGenerator numberGenerator;
-    SetModes setModes;
-    Stopwatch stopwatch;
-    TimerT timerT;
+    SetTime setTime = new SetTime();
+    AlarmManager alarmManager = new AlarmManager();
+    GlobalTime globalTime = new GlobalTime();
+    NumberGenerator numberGenerator= new NumberGenerator();
+    SetModes setModes= new SetModes();
+    Stopwatch stopwatch = new Stopwatch();
+    TimerT timerT= new TimerT();
 
     public WatchSystem(){
-        setTime = new SetTime();
-        timerT = new TimerT();
-        stopwatch = new Stopwatch();
-        alarmManager = new AlarmManager();
-        numberGenerator = new NumberGenerator();
-        globalTime = new GlobalTime();
-        setModes = new SetModes();
+
         //currentMode = setModes.getCurrentMode();
     }
 
@@ -28,6 +22,7 @@ public class WatchSystem {
 
 
    /////////////////////////// ALARM FUNCTION /////////////////////////////////////
+
    public int getAlarmIndex(){
        return alarmManager.getAlarmIndex();
    }
@@ -36,21 +31,29 @@ public class WatchSystem {
        alarmManager.addAlarmIndex();
    }
 
-   public void setAlarmHour(){
-       alarmManager.setAlarmHour();
+   public void setAlarmHourAdd(){
+       alarmManager.setAlarmHourAdd();
    }
 
-   public void setAlarmMinute(){
-       alarmManager.setAlarmMinute();
+   public void setAlarmMinuteAdd(){
+       alarmManager.setAlarmMinuteAdd();
+   }
+
+   public void setAlarmHourMinus(){
+       alarmManager.setAlarmHourMinus();
+   }
+
+   public void setAlarmMinuteMinus(){
+       alarmManager.setAlarmMinuteMinus();
    }
 
    public void activateAlarm(){
        alarmManager.activateAlarm();
    }
 
-    public void deactivateAlarm(){
+    /*public void deactivateAlarm(){
         alarmManager.deactivateAlarm();
-    }
+    }*/
 
    public void killAlarm(){
        alarmManager.killAlarm();
@@ -67,6 +70,10 @@ public class WatchSystem {
 
    public boolean isAlarmActivated(){
       return alarmManager.isAlarmActivated();
+   }
+
+   public boolean isThisAlarmActivated(){
+       return alarmManager.isThisAlarmActivated();
    }
 
 
@@ -89,6 +96,14 @@ public class WatchSystem {
            setTime.setTimeUnsave();
        }
         setTime.exitSettingTime();
+    }
+
+    public int getCursor(){
+       return setTime.getCursor();
+    }
+
+    public void setCursorNext(){
+       setTime.setCursorNext();
     }
 
     public void setTimeMinutesAdd(){
@@ -173,13 +188,17 @@ public class WatchSystem {
        timerT.resetTimer();
     }
 
+    public boolean getIsTimerStart(){
+       return timerT.getIsTimerStart();
+    }
+
     ///////////// For display
     public long getTimerTime(){
-       return timerT.getTimerTime();
+       return (long)timerT.getTimerTime();
     }
 
 
-    ///////////// For buzzer
+    ////////////////// For buzzer
 
     public boolean isTimerBuzzerOn(){
         return timerT.isBuzzerOn();
@@ -198,6 +217,10 @@ public class WatchSystem {
 
     public void stopStopwatch(){
        stopwatch.stopStopwatch();
+    }
+
+    public boolean getIsStopwatchStart(){
+       return stopwatch.getStartStopwatch();
     }
 
     public void resetStopwatch(){
@@ -300,6 +323,10 @@ public class WatchSystem {
        return setModes.getCurrentModes();
     }
 
+    public int getSavableModeIndex(){
+       return setModes.getSavableModeIndex();
+    }
+
     public int getCurrentMode(){
        return setModes.getCurrentMode();
     }
@@ -308,8 +335,8 @@ public class WatchSystem {
        setModes.selectNextSelectableMode(this.getCurrentMode());
     }
 
-    public void changeToNextSelectableMode(){
-        setModes.changeToNextSelectableMode();
+    public void changeToNextMode(){
+        setModes.changeToNextMode();
     }
 
     public void saveMode(){

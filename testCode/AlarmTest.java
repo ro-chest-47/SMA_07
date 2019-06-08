@@ -7,6 +7,11 @@ public class AlarmTest {
 
     @Test
     public void isAlarmSound() {
+        Alarm am = new Alarm();
+        am.setThisAlarmHourAdd();
+        am.setThisAlarmMinuteAdd();
+        am.isAlarmSound(1,1);
+        assertEquals(am.getBuzzerOn(), true);
     }
 
     @Test
@@ -27,6 +32,12 @@ public class AlarmTest {
 
     @Test
     public void killAlarm() {
+        Alarm am = new Alarm();
+        am.setThisAlarmHourAdd();
+        am.setThisAlarmMinuteAdd();
+        am.isAlarmSound(1,1);
+        am.killAlarm();
+        assertEquals(am.getBuzzerOn(), false);
     }
 
     @Test

@@ -12,6 +12,7 @@ public class TimeKeeping {
     int modifiedDay;
     int modifiedHour;
     int modifiedMinute;
+    private boolean isTimeKeepingStop;
     private String stringTime;
     Calendar time;
     SimpleDateFormat simpleDateFormat;
@@ -19,11 +20,13 @@ public class TimeKeeping {
 
     Timer timer = new Timer();
 
-    TimerTask task = new TimerTask() {
+    private  TimerTask task = new TimerTask() {
         @Override
         public void run() {
-            time.add(Calendar.SECOND, 1);
-            stringTime = simpleDateFormat.format(time.getTime());
+            if(isTimeKeepingStop==false) {
+                time.add(Calendar.SECOND, 1);
+                stringTime = simpleDateFormat.format(time.getTime());
+            }
         }
     };
 
@@ -33,7 +36,8 @@ public class TimeKeeping {
         this.modifiedDay=0;
         this.modifiedHour=0;
         this.modifiedMinute=0;
-        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        this.isTimeKeepingStop=false;
+        simpleDateFormat = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
         this.time = Calendar.getInstance();
         stringTime = simpleDateFormat.format(time.getTime());
         timer.scheduleAtFixedRate(task,0,1000);
@@ -41,6 +45,7 @@ public class TimeKeeping {
 
     //////////////// For display
     public String getCurrentTime() {
+        stringTime = simpleDateFormat.format(time.getTime());
         return this.stringTime;          // 주의. month는 0~11 이다.
     }
 
@@ -59,9 +64,21 @@ public class TimeKeeping {
         time.add(Calendar.YEAR, this.modifiedYear);
         time.add(Calendar.MONTH, this.modifiedMonth);            // 주의. month는 0~11 이다.
         time.add(Calendar.DATE, this.modifiedDay);
-        time.add(Calendar.HOUR, this.modifiedHour);
+        time.add(Calendar.HOUR_OF_DAY, this.modifiedHour);
         time.add(Calendar.MINUTE, this.modifiedMinute);
         //stringTime = simpleDateFormat.format(time.getTime());  // TimerTask에서 해주는중!
+    }
+
+    public void stopTimeKeeping(){
+        this.isTimeKeepingStop=true;
+    }
+
+    public void startTimeKeeping(){
+        this.isTimeKeepingStop=false;
+    }
+
+    public void setMilliSecondAdd(long i){
+        time.add(Calendar.MILLISECOND, (int)i);
     }
 
     public void setSecond(){

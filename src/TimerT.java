@@ -2,30 +2,32 @@ import java.util.TimerTask;
 import java.util.Timer;
 
 public class TimerT{
-    private int minute;
-    private int hour;
-    private long time;
+    //private long minute;
+    //private long hour;
+    private float time;
     private boolean isTimerStart;
     private boolean isCountDownZero;
+    //private boolean isTimerTimeSaved;
 
-    Timer timer = new Timer();
+    Timer timer= new Timer();
 
     public TimerT(){
-        this.hour=0;
-        this.minute=0;
+       // this.hour=0;
+       // this.minute=0;
         this.time=0;
         this.isTimerStart=false;
         this.isCountDownZero=false;
+        timer.scheduleAtFixedRate(task,0,10);
     }
 
-   TimerTask task = new TimerTask() {
+    private TimerTask task= new TimerTask() {
        @Override
        public void run() {
            if(isTimerStart) {
                if(isCountDownZero){
-                   time++;
+                   time+=0.01;
                } else {
-                   time--;
+                   time-=0.01;
                }
 
                if(time==0){
@@ -41,54 +43,40 @@ public class TimerT{
 
 
 
+
+
 /////////// button으로 입력받는다.
-    public void saveMinutesAdd() {        // setTime과 동일하게 1번 누르면 +5 혹은 -5
-        if(this.minute==59){
-            if(this.hour==0) {
-                this.minute = 0;
-                this.hour=1;
-            } else {
-                this.minute=59;
-            }
-        } else {
-            this.minute ++;
+    public void saveMinutesAdd() {        // setTime과 동일하게 1번 누르면 +1 혹은 -1
+
+        if(this.time<7200){
+            this.time += 60;
         }
-        this.time=60*this.minute;
-        this.time=3600*this.hour;
     }
 
     public void saveMinutesMinus(){
-        if(this.minute==0){
-            if(this.hour==1) {
-                this.minute = 59;
-                this.hour = 0;
-            } else {
-                this.minute=0;
-            }
-        } else {
-            this.minute--;
+
+        if(this.time>0){
+            this.time -= 60;
         }
-        this.time = 60*this.minute;
-        this.time=3600*this.hour;
     }
 
 
     public void saveHour() {            // 시간은 1시간만 설정할 수 있다. 이 때 이 함수를 다시 부르면 0시간으로!
-        if(this.hour==1){
-            this.hour=0;
+
+        if(this.time<3600){
+            this.time += 3600;
         } else {
-            this.hour=1;
+            this.time -= 3600;
         }
-        this.time=3600*this.hour;
     }
 
 
 
-    public void startTimer() {                              // display가 이 함수를 계속 참조하면.
-                                                            // this.time이 계속 초기화가 된다!!!
-                                                            // 그래서 display용 함수 따로 만듦.
-        this.isTimerStart=true;
-        timer.scheduleAtFixedRate(task,0,1000);
+    public void startTimer() {
+        if(this.time != 0) {
+            this.isTimerStart = true;
+        }
+
         //return this.time;
     }
 
@@ -99,17 +87,18 @@ public class TimerT{
     }
 
     public void resetTimer(){
+       // timer.
         this.isTimerStart=false;
         this.isCountDownZero=false;
-        this.hour=0;
-        this.minute=0;
         this.time=0;
-        timer = null;
-        //return 0;
     }
 
-    /////////////// For display
-    public long getTimerTime(){
+    public boolean getIsTimerStart(){
+        return this.isTimerStart;
+    }
+
+   /////////////// For display
+    public float getTimerTime(){
         return this.time;
     }
 

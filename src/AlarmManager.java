@@ -32,36 +32,71 @@ public class AlarmManager {
         }
     }
 
-    public void setAlarmHour() {
+
+    public void setAlarmHourAdd() {
         switch (this.alarmIndex){
             case 0:
-                alarm0.setThisAlarmHour();
+                alarm0.setThisAlarmHourAdd();
                 break;
             case 1:
-                alarm1.setThisAlarmHour();
+                alarm1.setThisAlarmHourAdd();
                 break;
             case 2:
-                alarm2.setThisAlarmHour();
+                alarm2.setThisAlarmHourAdd();
                 break;
             case 3:
-                alarm3.setThisAlarmHour();
+                alarm3.setThisAlarmHourAdd();
                 break;
         }
     }
 
-    public void setAlarmMinute() {
+    public void setAlarmMinuteAdd() {
         switch (this.alarmIndex){
             case 0:
-                alarm0.setThisAlarmMinute();
+                alarm0.setThisAlarmMinuteAdd();
                 break;
             case 1:
-                alarm1.setThisAlarmMinute();
+                alarm1.setThisAlarmMinuteAdd();
                 break;
             case 2:
-                alarm2.setThisAlarmMinute();
+                alarm2.setThisAlarmMinuteAdd();
                 break;
             case 3:
-                alarm3.setThisAlarmMinute();
+                alarm3.setThisAlarmMinuteAdd();
+                break;
+        }
+    }
+
+    public void setAlarmHourMinus() {
+        switch (this.alarmIndex){
+            case 0:
+                alarm0.setThisAlarmHourMinus();
+                break;
+            case 1:
+                alarm1.setThisAlarmHourMinus();
+                break;
+            case 2:
+                alarm2.setThisAlarmHourMinus();
+                break;
+            case 3:
+                alarm3.setThisAlarmHourMinus();
+                break;
+        }
+    }
+
+    public void setAlarmMinuteMinus() {
+        switch (this.alarmIndex){
+            case 0:
+                alarm0.setThisAlarmMinuteMinus();
+                break;
+            case 1:
+                alarm1.setThisAlarmMinuteMinus();
+                break;
+            case 2:
+                alarm2.setThisAlarmMinuteMinus();
+                break;
+            case 3:
+                alarm3.setThisAlarmMinuteMinus();
                 break;
         }
     }
@@ -69,21 +104,39 @@ public class AlarmManager {
     public void activateAlarm() {
         switch (this.alarmIndex) {
             case 0:
-                 alarm0.setAlarmOn();
+                if(alarm0.getIsAlarmActivated()){
+                    alarm0.setAlarmOff();
+                } else {
+                    alarm0.setAlarmOn();
+                }
                  break;
+
             case 1:
-                 alarm1.setAlarmOn();
+                if(alarm1.getIsAlarmActivated()){
+                    alarm1.setAlarmOff();
+                } else {
+                    alarm1.setAlarmOn();
+                }
                  break;
+
             case 2:
-                alarm2.setAlarmOn();
+                if(alarm2.getIsAlarmActivated()){
+                    alarm2.setAlarmOff();
+                } else {
+                    alarm2.setAlarmOn();
+                }
                 break;
             case 3:
-                alarm3.setAlarmOn();
+                if(alarm3.getIsAlarmActivated()){
+                    alarm3.setAlarmOff();
+                } else {
+                    alarm3.setAlarmOn();
+                }
                 break;
         }
     }
 
-    public void deactivateAlarm() {
+    /*public void deactivateAlarm() {
         switch (this.alarmIndex) {
             case 0:
                 alarm0.setAlarmOff();
@@ -98,7 +151,7 @@ public class AlarmManager {
                 alarm3.setAlarmOff();
                 break;
         }
-    }
+    }*/
 
     public void killAlarm() {
         if(alarm0.getBuzzerOn()){
@@ -163,5 +216,23 @@ public class AlarmManager {
         } else {
             return false;
         }
+    }
+
+    public boolean isThisAlarmActivated(){  // 알람 메뉴에서 알람 하나마다 켜졌는지 확인
+        switch(this.alarmIndex){
+            case 0:
+                return alarm0.getIsAlarmActivated();
+
+            case 1:
+                return alarm1.getIsAlarmActivated();
+
+            case 2:
+                return  alarm2.getIsAlarmActivated();
+
+            case 3:
+                return alarm3.getIsAlarmActivated();
+        }
+
+        return false;
     }
 }

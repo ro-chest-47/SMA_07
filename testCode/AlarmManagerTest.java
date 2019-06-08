@@ -27,12 +27,16 @@ public class AlarmManagerTest {
     public void setAlarmHour() {
         AlarmManager am = new AlarmManager();
         int i=0;
-        am.alarm0.setThisAlarmHour();
+        am.alarm0.setThisAlarmHourAdd();
         assertEquals(am.getAlarmTimeHour(), 1);
         i++;
-        while(i<25){
-            am.alarm0.setThisAlarmHour();
+        while(i<24){
+            am.alarm0.setThisAlarmHourAdd();
+
             i++;
+            if(i != 24) {
+                assertEquals(am.getAlarmTimeHour(), i);
+            }
         }
         assertEquals(am.getAlarmTimeHour(), 0);
     }
@@ -41,12 +45,15 @@ public class AlarmManagerTest {
     public void setAlarmMinute() {
         AlarmManager am = new AlarmManager();
         int i=0;
-        am.alarm0.setThisAlarmMinute();
+        am.alarm0.setThisAlarmMinuteAdd();
         assertEquals(am.getAlarmTimeMinute(), 1);
         i++;
-        while(i<61){
-            am.alarm0.setThisAlarmMinute();
+        while(i<60){
+            am.alarm0.setThisAlarmMinuteAdd();
             i++;
+            if(i != 60){
+                assertEquals(am.getAlarmTimeMinute(), i);
+            }
         }
         assertEquals(am.getAlarmTimeMinute(), 0);
     }

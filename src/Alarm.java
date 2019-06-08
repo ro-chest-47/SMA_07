@@ -5,6 +5,8 @@ import java.util.StringTokenizer;
 import java.lang.InterruptedException;
 
 public class Alarm extends TimeKeeping{
+   // private int alarmCursor;
+
     private boolean isAlarmActivated;
     private int alarmTimeHour;
     private int alarmTimeMinute;
@@ -15,7 +17,7 @@ public class Alarm extends TimeKeeping{
     //StringTokenizer st;
     Calendar currentTime;
 
-    TimerTask task = new TimerTask() {
+    private TimerTask task = new TimerTask() {
         @Override
         public void run(){
             if(isAlarmActivated) {
@@ -24,18 +26,20 @@ public class Alarm extends TimeKeeping{
                         Thread.sleep(60000);
                         isAlarmKilled = false;
                     } catch (InterruptedException e) {
-
+                       String exception= e.getMessage();
+                       System.out.println("Alarm Interrupted Exception occurred"+exception);
                     }
                 } else {
-                    isAlarmSound(currentTime.get(Calendar.HOUR), currentTime.get(Calendar.MINUTE));
+                    isAlarmSound(currentTime.get(Calendar.HOUR_OF_DAY), currentTime.get(Calendar.MINUTE));
                 }
             }
         }
     };
 
-    Timer timer = new Timer();
+    private Timer timer = new Timer();
 
     public Alarm(){
+       // this.alarmCursor=0;
         this.alarmTimeHour=0;
         this.alarmTimeMinute=0;
         this.buzzerOn = false;
@@ -53,7 +57,19 @@ public class Alarm extends TimeKeeping{
     }
 
    //////////////////// For input(button)
-    public void setThisAlarmHour() {
+   /* public int getAlarmCursor(){
+        return this.alarmCursor;
+    }
+
+    public void setAlarmCursorNext(){
+        if(this.alarmCursor==0){
+            this.alarmCursor=1;
+        } else {
+            this.alarmCursor=0;
+        }
+    }*/
+
+    public void setThisAlarmHourAdd() {
         if(this.alarmTimeHour == 23){
             this.alarmTimeHour = 0;
         } else {
@@ -62,13 +78,39 @@ public class Alarm extends TimeKeeping{
         //return hour;
     }
 
-    public void setThisAlarmMinute() {
+    public void setThisAlarmMinuteAdd() {
         if(this.alarmTimeMinute == 59){
             this.alarmTimeMinute=0;
+            if(this.alarmTimeHour==23){
+                this.alarmTimeHour=0;
+            }else {
+                this.alarmTimeHour++;
+            }
         } else {
             this.alarmTimeMinute++;
         }
         //return minute;
+    }
+
+    public void setThisAlarmHourMinus(){
+        if(this.alarmTimeHour==0){
+            this.alarmTimeHour=23;
+        } else {
+            this.alarmTimeHour--;
+        }
+    }
+
+    public void setThisAlarmMinuteMinus(){
+        if(this.alarmTimeMinute==0){
+            this.alarmTimeMinute=59;
+            if(this.alarmTimeHour==0){
+                this.alarmTimeHour=23;
+            } else {
+                this.alarmTimeHour--;
+            }
+        } else {
+            this.alarmTimeMinute--;
+        }
     }
 
     public void setAlarmOn() {
@@ -102,6 +144,7 @@ public class Alarm extends TimeKeeping{
     public boolean getIsAlarmActivated(){       // UI에 불켜주려고. 알람활성화 확인 메소드.
         return isAlarmActivated;
     }
+
 
     ////////////// For buzzer
     public boolean getBuzzerOn(){   // UI클래스에서 부저를 울리는지 안울리는지 판단하기용.

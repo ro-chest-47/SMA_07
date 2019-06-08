@@ -2,7 +2,13 @@
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import java.util.TimerTask;
+import java.util.Timer;
+
 public class SetTime {
+    private int cursor;
+
+    private long spendTimeWhenSettingTime;
     private int saveDay;
     private int saveMonth;
     private int saveYear;
@@ -18,17 +24,30 @@ public class SetTime {
     SimpleDateFormat simpleDateFormatWhenSettingTime;
     Calendar currentTime;
 
+    Timer timer = new Timer();
+
+    TimerTask task = new TimerTask() {
+        @Override
+        public void run() {
+            spendTimeWhenSettingTime++;
+        }
+    };
+
     public SetTime(){
+        this.cursor=-1;
+
+
+        this.spendTimeWhenSettingTime=0;
         this.saveYear=0;
         this.saveMonth=0;
         this.saveDay=0;
         this.saveTimeHour=0;
         this.saveTimeMinute=0;
         this.isEnterSettingTimeTrue=false;
+        timeKeeping=new TimeKeeping();
 
 
-
-        simpleDateFormatWhenSettingTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:00");
+        simpleDateFormatWhenSettingTime = new SimpleDateFormat("yy-MM-dd HH:mm:00");
         stringTimeWhenSettingTime = simpleDateFormatWhenSettingTime.format(timeKeeping.time.getTime());
 
         timeKeeping = new TimeKeeping();
@@ -39,6 +58,9 @@ public class SetTime {
     public void enterSettingTime(){
         isTimeSaved=false;
         isEnterSettingTimeTrue=true;
+        timeKeeping.stopTimeKeeping();
+        this.cursor=0;
+        timer.scheduleAtFixedRate(task,0,1);
     }
 
     public boolean getEnterSettingTimeTrue(){
@@ -54,9 +76,25 @@ public class SetTime {
         this.saveDay=0;
         this.saveTimeHour=0;
         this.saveTimeMinute=0;
+        timeKeeping.setMilliSecondAdd(this.spendTimeWhenSettingTime);
+        this.spendTimeWhenSettingTime=0;
+        this.timer=null;
+        timeKeeping.startTimeKeeping();
         isEnterSettingTimeTrue=false;
+        this.cursor = -1;
     }
 
+    public int getCursor(){
+        return this.cursor;
+    }
+
+    public void setCursorNext(){            // 분 시 일 월 연 순으로 간다.
+        if(this.cursor>=4){
+            cursor=0;
+        } else {
+            this.cursor ++;
+        }
+    }
 
 
     public void setTimeMinutesAdd() { // 이 button은 +1 혹은 -1 이다.
@@ -144,6 +182,7 @@ public class SetTime {
 
     public String getCurrentTime(){
         if(isEnterSettingTimeTrue){
+            stringTimeWhenSettingTime = simpleDateFormatWhenSettingTime.format(currentTime.getTime());
             return stringTimeWhenSettingTime;
         }
         return timeKeeping.getCurrentTime();

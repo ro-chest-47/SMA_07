@@ -1,5 +1,9 @@
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.StringTokenizer;
+
 import static org.junit.Assert.*;
 
 public class TimeKeepingTest {
@@ -54,6 +58,20 @@ public class TimeKeepingTest {
 
     @Test
     public void setYearAdd() {
+        TimeKeeping tk = new TimeKeeping();
+        String testTime;
+        StringTokenizer st0, st1;
+        Calendar time = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat;
+
+        tk.setYearAdd();
+        time.add(Calendar.YEAR, 1);
+        simpleDateFormat = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+        testTime = simpleDateFormat.format(time.getTime());
+        st0=new StringTokenizer(tk.getCurrentTime(), " -:");
+        st1=new StringTokenizer(testTime, " -:");
+        assertEquals(st0.nextToken(),st1.nextToken());
+        assertEquals(st0.nextToken(),st1.nextToken());
     }
 
     @Test

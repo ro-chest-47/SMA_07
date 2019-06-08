@@ -10,13 +10,18 @@ public class Stopwatch{
     public Stopwatch(){
         startStopwatch=false;
         stopwatchTime=0;
+        timer.scheduleAtFixedRate(task, 0, 10);
+
+
     }
 
     TimerTask task = new TimerTask() {
         @Override
         public void run() {
             if(startStopwatch) {
-                stopwatchTime++;
+                if(stopwatchTime<3600000) {
+                    stopwatchTime++;
+                }
             }
         }
     };
@@ -25,7 +30,8 @@ public class Stopwatch{
 ////////////// For input(button)
     public void startStopwatch() {
         this.startStopwatch=true;
-        timer.scheduleAtFixedRate(task, 0, 10);
+        timer = new Timer();
+        //timer.scheduleAtFixedRate(task, 0, 10);
         //return this.stopwatchTime;
     }
 
@@ -34,9 +40,13 @@ public class Stopwatch{
         //return this.stopwatchTime;
     }
 
+    public boolean getStartStopwatch(){
+        return this.startStopwatch;
+    }
+
     public void resetStopwatch() {       // 아마도 system에서 그냥 null로 넣어줘도 되겠지만..
         this.startStopwatch=false;
-        timer = null;
+        //timer = null;
         this.stopwatchTime=0;
         //return 0;
     }

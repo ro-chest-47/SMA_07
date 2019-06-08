@@ -43,11 +43,11 @@ public class SetModesTest {
     public void changeToNextSelectableMode() {
         SetModes sm = new SetModes();
         sm.saveMode();
-        sm.changeToNextSelectableMode();
+        sm.changeToNextMode();
         sm.saveMode();
-        sm.changeToNextSelectableMode();
+        sm.changeToNextMode();
         sm.saveMode();
-        sm.changeToNextSelectableMode();
+        sm.changeToNextMode();
 
         assertArrayEquals(sm.getNewModes(), new boolean[]{true, true, true, true, false, false});
     }

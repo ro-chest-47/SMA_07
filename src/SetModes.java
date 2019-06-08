@@ -17,28 +17,28 @@ public class SetModes {
 
     public void enterSettingModes(){
         savableModeIndex=1;             // 0번 Time Keeping은 뺄 수 없으니까.
+        System.arraycopy(currentModes, 1, newModes, 1, 5);  //들어올 땐, 예전에 갖고있던 모드 정보를 갖고 있는다.
+        numberOfModes=3;
         isEnterSettingModes=true;
     }
 
     public boolean getEnterSettingModesTrue(){
+
         return isEnterSettingModes;
     }
 
     public void exitSettingModes(){
-        if(this.numberOfModes==3) {
+        if(this.numberOfModes==3) {         // 세 개를 고르지 않으면 저장되지 않는다.
             System.arraycopy(newModes, 1, currentModes, 1, 5);
         }
         this.resetNewModes();
+        this.modesArrayIndex=0;
         isEnterSettingModes = false;
     }
 
 
-    /*public int getModesArrayIndex(){
-        return this.modesArrayIndex;
-    }*/
-
-
 ///////////////////////// For display
+
     public boolean[] getNewModes(){     // 모드 설정 도중에 새로 선택된 모드를 보여준다.
         return this.newModes;
     }
@@ -47,7 +47,9 @@ public class SetModes {
         return this.currentModes;
     }
 
-
+    public int getSavableModeIndex(){
+        return this.savableModeIndex;
+    }
 
 ///////////////////////// 현재 메뉴에서 모드 선택
 
@@ -56,20 +58,42 @@ public class SetModes {
         return this.modesArrayIndex;
     }
 
+    ///////////////////////////////////TESTESTESTESTE
+
     public void selectNextSelectableMode(int arrayIndex){      //입력값은 modesArrayIndex // 일반 모드에서 다음모드 선택.
-        if(arrayIndex==5){
-            arrayIndex=0;
-            /*if(currentModes[0]==false){
-                selectNextSelectableMode(arrayIndex+1);
-            }*/
+
+      /*  this.modesArrayIndex=arrayIndex;
+        //System.out.println(" mode index: "+this.modesArrayIndex);
+        if(this.modesArrayIndex==5){
+            this.modesArrayIndex=0;
+
         } else {
-            if(currentModes[arrayIndex+1]){
-                arrayIndex++;
+            if(currentModes[modesArrayIndex+1]){
+                modesArrayIndex++;
             } else {
-                selectNextSelectableMode(arrayIndex+1);
+                this.selectNextSelectableMode(modesArrayIndex+1);
             }
         }
-        this.modesArrayIndex = arrayIndex;
+*/
+
+        if(this.modesArrayIndex==5){
+            this.modesArrayIndex=0;
+            return;
+        } else {
+            while(this.modesArrayIndex<5){
+                if(this.modesArrayIndex+1==5 && currentModes[5]==false){
+                    this.modesArrayIndex=0;
+                    break;
+                }
+
+                if(currentModes[this.modesArrayIndex+1]){
+                    this.modesArrayIndex++;
+                    break;
+                } else {
+                    this.modesArrayIndex++;
+                }
+            }
+        }
     }
 
 
@@ -80,15 +104,20 @@ public class SetModes {
 
     }*/
 
-    public void changeToNextSelectableMode() {          // 모드 메뉴 설정(모드 선택 모드)에서 모드를 고를 때는 TimeKeeping 뺴고만 고를 수 있으니까.
+   /* public int getSavableModeIndex(){
+        return this.savableModeIndex;
+    }*/
+
+    public void changeToNextMode() {          // 모드 메뉴 설정(모드 선택 모드)에서 모드를 고를 때는 TimeKeeping 뺴고만 고를 수 있으니까.
         if(savableModeIndex==5) {
             savableModeIndex=1;
         } else {
             savableModeIndex++;
         }
+       // System.out.println(savableModeIndex);
     }
 
-    public void saveMode() {                          // 선택한 모드를 newMode에 저장한다.
+    public void saveMode() {                          // 선택한 모드를 newMode에 저장하거나, 제거한다.
         if(this.newModes[savableModeIndex]) {
             this.newModes[savableModeIndex] = false;
             this.numberOfModes--;
@@ -103,6 +132,9 @@ public class SetModes {
     }
 
     public void resetNewModes() {
-        this.newModes = new boolean[]{true, false, false, false, false, false};
+        for(int i=1; i<6; i++){
+            this.newModes[i]=false;
+        }
+        this.numberOfModes=0;
     }
 }
