@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TravelerDigitalWatchJDKError:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TravelerDigitalWatchJDKError_jar</output-path>
+    <root id="archive" name="TravelerDigitalWatchJDKError.jar">
+      <element id="module-output" name="TravelerDigitalWatchJDKError" />
+    </root>
+  </artifact>
+</component>
