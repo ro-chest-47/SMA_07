@@ -30,7 +30,7 @@ public class TimerT{
                    time-=0.01;
                }
 
-               if(time==0){
+               if(time<=0.02){
                    isCountDownZero=true;
                }
 

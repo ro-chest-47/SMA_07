@@ -610,9 +610,15 @@ public class UI {        // UI에서는 각 파트별로 뭘 나타낼지만 알
                         gui.setIconInvisible(1);
                         gui.modeDisplay(modeIndex);
 
-                        hourPart = (int) (system.getTimerTime() / (60 * 60));
-                        minutePart = (((int) system.getTimerTime()) % 3600)/60;
-                        secondPart = (int) (system.getTimerTime() % 60);
+                        if((int)system.getTimerTime() != 0) {
+                            hourPart = (int) (system.getTimerTime() / (60 * 60));
+                            minutePart = (((int) system.getTimerTime()) % 3600) / 60;
+                            secondPart = (int) (system.getTimerTime() % 60);
+                        } else {
+                            secondPart = 0;
+                        }
+
+                        System.out.println(secondPart);
                         gui.updateHour(hourPart, true);
                         gui.updateMinute(minutePart, true);
                         gui.updateSecond(secondPart);
