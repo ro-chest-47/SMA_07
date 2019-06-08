@@ -9,7 +9,7 @@ public class Stopwatch{
 
     public Stopwatch(){
         startStopwatch=false;
-        stopwatchTime=0;
+        stopwatchTime=719500;
         timer.scheduleAtFixedRate(task, 0, 10);
 
 
@@ -19,7 +19,7 @@ public class Stopwatch{
         @Override
         public void run() {
             if(startStopwatch) {
-                if(stopwatchTime<360000) {
+                if(stopwatchTime<720000) {
                     stopwatchTime++;
                 }
             }
