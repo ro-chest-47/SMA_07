@@ -64,8 +64,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-613">
-              <caret line="643" column="55" selection-start-line="643" selection-start-column="55" selection-end-line="643" selection-end-column="55" />
+            <state relative-caret-position="-5">
+              <caret line="639" column="55" selection-start-line="639" selection-start-column="55" selection-end-line="639" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -194,6 +194,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560014232533" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src" />
@@ -345,7 +346,7 @@
       <workItem from="1559979280122" duration="1907000" />
       <workItem from="1559983435588" duration="381000" />
       <workItem from="1559984756455" duration="7197000" />
-      <workItem from="1560013212172" duration="272000" />
+      <workItem from="1560013212172" duration="853000" />
     </task>
     <servers />
   </component>
@@ -382,7 +383,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163958000" />
+    <option name="totallyTimeSpent" value="164539000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -666,8 +667,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-613">
-          <caret line="643" column="55" selection-start-line="643" selection-start-column="55" selection-end-line="643" selection-end-column="55" />
+        <state relative-caret-position="-5">
+          <caret line="639" column="55" selection-start-line="639" selection-start-column="55" selection-end-line="639" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
