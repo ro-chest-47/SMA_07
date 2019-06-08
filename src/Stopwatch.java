@@ -19,7 +19,7 @@ public class Stopwatch{
         @Override
         public void run() {
             if(startStopwatch) {
-                if(stopwatchTime<3600000) {
+                if(stopwatchTime<360000) {
                     stopwatchTime++;
                 }
             }

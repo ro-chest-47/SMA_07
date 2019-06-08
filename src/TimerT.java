@@ -7,6 +7,7 @@ public class TimerT{
     private float time;
     private boolean isTimerStart;
     private boolean isCountDownZero;
+    private boolean setBuzzerRing;
     //private boolean isTimerTimeSaved;
 
     Timer timer= new Timer();
@@ -17,6 +18,7 @@ public class TimerT{
         this.time=0;
         this.isTimerStart=false;
         this.isCountDownZero=false;
+        this.setBuzzerRing=false;
         timer.scheduleAtFixedRate(task,0,10);
     }
 
@@ -24,14 +26,19 @@ public class TimerT{
        @Override
        public void run() {
            if(isTimerStart) {
+
                if(isCountDownZero){
                    time+=0.01;
                } else {
                    time-=0.01;
                }
 
-               if(time<=0.02){
+               if(time<=0.5){
                    isCountDownZero=true;
+               }
+
+               if(time<1){
+                   setBuzzerRing=true;
                }
 
                if(time >= 7200){        // 원래 타이머 시간 1시간 59분 까지 설정 가능. 계속 커지다가 2시간이 되면 리셋.
@@ -40,8 +47,6 @@ public class TimerT{
            }
        }
    };
-
-
 
 
 
@@ -82,6 +87,7 @@ public class TimerT{
 
     public void stopTimer() {
         this.isTimerStart=false;
+        this.setBuzzerRing=false;
         this.isCountDownZero=false;             // 타이머 시간이 0이 된 후 부저가 울릴 때, 한번 멈췄다가 다시 시작해주면 부저는 안울리는데 계속 시간은 커진다.
        // return this.time;
     }
@@ -89,6 +95,7 @@ public class TimerT{
     public void resetTimer(){
        // timer.
         this.isTimerStart=false;
+        this.setBuzzerRing=false;
         this.isCountDownZero=false;
         this.time=0;
     }
@@ -104,7 +111,7 @@ public class TimerT{
 
     /////////////// For buzzer
     public boolean isBuzzerOn(){
-        if(this.isCountDownZero){
+        if(this.setBuzzerRing){
             return true;
         } else {
             return false;
