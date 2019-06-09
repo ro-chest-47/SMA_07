@@ -711,7 +711,7 @@ public class UI {        // UI에서는 각 파트별로 뭘 나타낼지만 알
                     System.out.println("UI Interrupted Exception occured : "+exception);
                     Thread.currentThread().interrupt();
                 }
-                return;
+
             }
         }
     };
