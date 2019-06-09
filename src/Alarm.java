@@ -10,6 +10,7 @@ public class Alarm extends TimeKeeping{
     private boolean isAlarmActivated;
     private int alarmTimeHour;
     private int alarmTimeMinute;
+    private int alarmTimeSecond;
     private boolean isAlarmKilled;
     //private int currentHourModifier;
    // private int currentMinuteModifier;
@@ -27,7 +28,8 @@ public class Alarm extends TimeKeeping{
                         isAlarmKilled = false;
                     } catch (InterruptedException e) {
                        String exception= e.getMessage();
-                       System.out.println("Alarm Interrupted Exception occurred"+exception);
+                        Thread.currentThread().interrupt();
+                        System.out.println("Alarm Interrupted Exception occurred"+exception);
                     }
                 } else {
                     isAlarmSound(currentTime.get(Calendar.HOUR_OF_DAY), currentTime.get(Calendar.MINUTE));
@@ -37,20 +39,22 @@ public class Alarm extends TimeKeeping{
     };
 
     private Timer timer = new Timer();
-
     public Alarm(){
        // this.alarmCursor=0;
         this.alarmTimeHour=0;
         this.alarmTimeMinute=0;
+        this.alarmTimeSecond = 0;
         this.buzzerOn = false;
         this.isAlarmActivated=false;
         this.isAlarmKilled=false;
-        currentTime = super.time;           // 알람이 TimeKeeping의 시간을 그대로 가져온다.
+        currentTime = super.time;
+        timer.scheduleAtFixedRate(this.task,0, 1000);
+        // 알람이 TimeKeeping의 시간을 그대로 가져온다.
     }
 
     //////////////// For task
     public void isAlarmSound(int currentHour, int currentMinute){     // 알람이 제 시간이 되어 울리게 되는지 알려주는 메소드.
-        if(this.alarmTimeHour == currentHour && this.alarmTimeMinute == currentMinute){
+        if(this.alarmTimeHour == currentHour && this.alarmTimeMinute == currentMinute && this.alarmTimeSecond == 0){
             buzzerOn = true;
         }
         //Buzzer ON!!!!!
@@ -114,14 +118,15 @@ public class Alarm extends TimeKeeping{
     }
 
     public void setAlarmOn() {
+
         this.isAlarmActivated=true;
-        timer.scheduleAtFixedRate(this.task,0, 1000);
+
         //return this.isAlarmActivated;
     }
 
     public void setAlarmOff(){       // deactivate alarm
         this.isAlarmActivated=false;
-        timer=null;
+     //   timer=null;
         //return this.isAlarmActivated;
     }
 

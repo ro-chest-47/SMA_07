@@ -6,7 +6,7 @@ import java.net.URL;
 
 public final class Constants {
 
-    final String APP_TITLE = "TravelClock";
+    static String APP_TITLE = "TravelClock";
     final URL ICO_URL = getClass().getClassLoader().getResource("clock_icon.png");
     final URL APP_BACKGROUND = getClass().getClassLoader().getResource("clock.png");
     final URL seg_image_h1 = getClass().getClassLoader().getResource("horizontal_1.png");

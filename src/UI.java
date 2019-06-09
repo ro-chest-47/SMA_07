@@ -1,9 +1,7 @@
-//import java.util.TimerTask;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.StringTokenizer;
-//import javax.swing.*;
 
 public class UI {        // UI에서는 각 파트별로 뭘 나타낼지만 알려준다.
 
@@ -32,7 +30,7 @@ public class UI {        // UI에서는 각 파트별로 뭘 나타낼지만 알
 
 
     boolean[] copiedNewMode = new boolean[]{true, false, false, false, false, false};
-    String[] date = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
+   // String[] date = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
     String stringTime;
     StringTokenizer stringTimeTokenized;
 
