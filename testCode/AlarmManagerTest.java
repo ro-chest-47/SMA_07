@@ -60,29 +60,36 @@ public class AlarmManagerTest {
 
     @Test
     public void activateAlarm() {
+        
     }
 
     @Test
     public void deactivateAlarm() {
+        
     }
 
     @Test
     public void killAlarm() {
+        
     }
 
     @Test
     public void isBuzzerOn() {
+        
     }
 
     @Test
     public void getAlarmTimeHour() {
+        
     }
 
     @Test
     public void getAlarmTimeMinute() {
+        
     }
 
     @Test
     public void isAlarmActivated() {
+        
     }
 }
